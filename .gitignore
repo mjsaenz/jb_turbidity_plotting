@@ -220,4 +220,4 @@ __marimo__/
 data/
 figs/
 *.h5
-*turbidity_survey_*.png
+*turbidity*.png

@@ -290,7 +290,7 @@ def plot_ground_track(turbidity_survey_df: pd.DataFrame, save_dir: str):
 
     start_time_dt = datetime.fromtimestamp(start_time/1_000_000, tz=timezone.utc)
 
-    pc = plt.scatter(lon, lat, c=concentration, cmap='autumn', label=f"Turbidity Data Points: {len(concentration)}")
+    pc = plt.scatter(lon, lat, c=concentration, cmap='autumn_r', label=f"Turbidity Data Points: {len(concentration)}")
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
     plt.title(f'Turbidity Map')
@@ -354,7 +354,7 @@ def plot_turbidity_dives(turbidity_survey_df: pd.DataFrame, dives_df: pd.DataFra
     for i in range(len(dive_nums)):
         curr_turbidity_survey_df = dive_turbidity_dfs[i]
         pc = plt.scatter(curr_turbidity_survey_df['concentration'], curr_turbidity_survey_df['depth'],
-                         c=curr_turbidity_survey_df['concentration'], cmap='autumn',
+                         c=curr_turbidity_survey_df['concentration'], cmap='autumn_r',
                          vmin=dive_min_turbidity, vmax=dive_max_turbidity)
         plt.colorbar(pc, label='Turbidity (NTU)', location='right')
         plt.xlabel('Turbidity (NTU)')
@@ -385,12 +385,12 @@ def plot_turbidity_dives(turbidity_survey_df: pd.DataFrame, dives_df: pd.DataFra
     survey_max_turbidity = max(concentration)
 
     pc = plt.scatter(lon, lat, c=concentration, label=f"Turbidity Data Points: {len(concentration)}",
-                     cmap='autumn', vmin=survey_min_turbidity, vmax=survey_max_turbidity, zorder=5)
+                     cmap='autumn_r', vmin=survey_min_turbidity, vmax=survey_max_turbidity, zorder=5)
     plt.scatter(dive_lons, dive_lats, c=dive_mean_turbiditys, marker='s', s=200, edgecolor='k', linewidth=3,
-                label=f"Jaiabot Dives, Mean Turbidity", cmap='autumn',
+                label=f"Jaiabot Dives, Mean Turbidity", cmap='autumn_r',
                 vmin=survey_min_turbidity, vmax=survey_max_turbidity, zorder=10)
     for dive_lon, dive_lat, num in zip(dive_lons, dive_lats, dive_nums):
-        plt.text(dive_lon, dive_lat, str(num), color="white", fontsize=10,
+        plt.text(dive_lon, dive_lat, str(num), color="dodgerblue", fontsize=10,
                  horizontalalignment='center', verticalalignment='center', zorder=15)
     plt.xlabel('Longitude')
     plt.ylabel('Latitude')
